@@ -1,0 +1,53 @@
+{
+  "name": "ecommerce_project",
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build && echo. > .next\\trace",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@headlessui/react": "^2.2.0",
+    "@iconify/icons-ion": "^1.2.10",
+    "@iconify/react": "^5.0.1",
+    "@radix-ui/react-scroll-area": "^1.2.5",
+    "aos": "^2.3.4",
+    "axios": "^1.7.2",
+    "country-telephone-data": "^0.6.3",
+    "date-fns": "^3.4.0",
+    "framer-motion": "^11.11.9",
+    "gray-matter": "^4.0.3",
+    "lucide-react": "^0.501.0",
+    "next": "14.2.4",
+    "next-auth": "^4.24.7",
+    "next-themes": "^0.3.0",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-google-recaptcha": "^3.1.0",
+    "react-hot-toast": "^2.4.1",
+    "react-icons": "^5.5.0",
+    "react-slick": "^0.30.2",
+    "react-tsparticles": "^2.12.2",
+    "remark": "^15.0.1",
+    "remark-html": "^16.0.1",
+    "sharp": "^0.34.1",
+    "slick-carousel": "^1.8.1",
+    "tsparticles": "^3.8.1",
+    "tsparticles-engine": "^2.12.0",
+    "world-countries": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/aos": "^3.0.7",
+    "@types/country-telephone-data": "^0.6.3",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@types/react-google-recaptcha": "^2.1.9",
+    "@types/react-slick": "^0.23.13",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
+  }
+}

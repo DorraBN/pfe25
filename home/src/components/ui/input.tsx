@@ -1,0 +1,27 @@
+"use client";
+
+import * as React from "react";
+
+// Fonction utilitaire simple pour fusionner les classes
+function mergeClassNames(...classes: (string | undefined)[]) {
+  return classes.filter(Boolean).join(" ");
+}
+
+const Input = React.forwardRef<HTMLInputElement, React.ComponentProps<"input">>(
+  ({ className, type = "text", ...props }, ref) => {
+    return (
+      <input
+        type={type}
+        ref={ref}
+        className={mergeClassNames(
+          "flex h-9 w-full rounded-md border border-gray-300 bg-transparent px-3 py-1 text-base shadow-xs transition-colors placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50",
+          className
+        )}
+        {...props}
+      />
+    );
+  }
+);
+Input.displayName = "Input";
+
+export { Input };
