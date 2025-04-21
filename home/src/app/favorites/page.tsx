@@ -85,144 +85,191 @@ export default function WishlistPage() {
   const uniqueBrands = [...new Set(products.map(p => p.brand))];
 
   return (
-    <div className="p-8 bg-cream min-h-screen">
-      {/* Barre de navigation */}
-      <div className="flex items-center justify-between border-b pb-4 mb-6">
-      <div className="flex items-center space-x-2">
-  <div className="ml-1">
-    <Logo /> {/* Ici, on peut aussi ajuster la taille du logo dans le composant Logo */}
-  </div>
-  <div className="text-xl font-bold text-red-500 mr-3">E-commerce</div> {/* Réduit la taille du texte */}
-</div>
-
-        <div className="flex space-x-6 text-sm">
-          <div className="flex items-center gap-2 cursor-pointer hover:text-orange-500">
-            <FaStore className="text-xl text-purple-400" />
-            <span><a href="/#">Accueil</a></span>
-          </div>
-          <div className="flex items-center gap-2 cursor-pointer hover:text-orange-500">
-            <FaBolt className="text-xl text-purple-400" />
-            <span>  <a href="/hotdeals">Promotions</a></span>
-          </div>
-
-          <Link
-            href="/register"
-            className="hidden lg:block bg-[#7b1fa2] text-white text-base font-medium hover:bg-transparent duration-300 hover:text-[#7b1fa2] border border-[#7b1fa2] px-5 py-2 rounded-full"
-          >
-            <div className="flex items-center gap-2">
-              <FaUser className="text-xl" />
-              <span>Compte</span>
+    <div className="p-8 bg-gray-50 min-h-screen">
+      {/* Navigation améliorée */}
+      <nav className="sticky top-0 bg-white shadow-sm z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <div className="flex-shrink-0 flex items-center space-x-3">
+              <Logo />
+              <span className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                E-commerce
+              </span>
             </div>
-          </Link>
-          <div className="bg-orange-500 p-3 rounded-full text-white hover:bg-orange-600 transition">
-            <FaShoppingCart className="text-2xl text-purple-400" />
+            
+            <div className="hidden md:flex items-center space-x-8">
+              <Link href="/#" className="flex items-center space-x-2 text-gray-600 hover:text-purple-600 transition-colors">
+                <FaStore className="text-lg" />
+                <span className="font-medium">Accueil</span>
+              </Link>
+              
+              <Link href="/hotdeals" className="flex items-center space-x-2 text-gray-600 hover:text-purple-600 transition-colors">
+                <FaBolt className="text-lg" />
+                <span className="font-medium">Promotions</span>
+              </Link>
+
+              <Link href="/register" className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full hover:shadow-lg transition-all">
+                <FaUser className="text-lg" />
+                <span className="font-medium">Compte</span>
+              </Link>
+
+              <button className="relative p-2 rounded-full hover:bg-gray-100 transition-colors">
+                <FaShoppingCart className="text-2xl text-purple-600" />
+                <span className="absolute -top-1 -right-1 bg-pink-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
+                  3
+                </span>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      </nav>
 
-      {/* Bouton "Tout ajouter au panier" */}
-      <div className="flex items-center space-x-4">
-        <button className="bg-primary text-white px-4 py-1 rounded flex items-center gap-1 mb-5">
-          <FiShoppingBag className="w-4 h-4" /> Tout ajouter au panier
-        </button>
-      </div>
+      {/* Contenu principal */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
+        {/* En-tête */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4 md:mb-0">
+            Mes Favoris
+            <span className="text-2xl ml-3 text-gray-500">({filteredItems.length} articles)</span>
+          </h1>
+          
+          <button className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-full flex items-center gap-3 hover:shadow-lg transition-shadow">
+            <FiShoppingBag className="w-5 h-5" />
+            <span>Tout ajouter au panier</span>
+          </button>
+        </div>
 
-      {/* Titre */}
-      <h1 className="text-3xl font-bold mb-6">Liste de favories ({filteredItems.length})</h1>
+        {/* Filtres modernisés */}
+        <div className="bg-white rounded-2xl shadow-md p-8 mb-8 w-full">
+  <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-6">
+    <input
+      type="text"
+      placeholder="🔍 Rechercher un produit..."
+      value={search}
+      onChange={e => setSearch(e.target.value)}
+      className="border border-gray-300 rounded-lg px-4 py-3 text-base shadow-sm focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-300 transition-all"
+    />
 
-      {/* Filtres */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-6">
-        <input
-          type="text"
-          placeholder="Rechercher un produit..."
-          value={search}
-          onChange={e => setSearch(e.target.value)}
-          className="border p-2 rounded"
+    <select
+      value={selectedBrand}
+      onChange={e => setSelectedBrand(e.target.value)}
+      className="border border-gray-300 rounded-lg px-4 py-3 text-base bg-white shadow-sm focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-300 transition-all"
+    >
+      <option value="">🏷️ Toutes les marques</option>
+      {uniqueBrands.map(brand => (
+        <option key={brand} value={brand}>{brand}</option>
+      ))}
+    </select>
+
+    <div className="flex gap-3">
+      <input
+        type="number"
+        placeholder="Min (TND)"
+        value={minPrice}
+        onChange={e => setMinPrice(e.target.value)}
+        className="border border-gray-300 rounded-lg px-4 py-3 text-base w-full shadow-sm focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-300 transition-all"
+      />
+      <input
+        type="number"
+        placeholder="Max (TND)"
+        value={maxPrice}
+        onChange={e => setMaxPrice(e.target.value)}
+        className="border border-gray-300 rounded-lg px-4 py-3 text-base w-full shadow-sm focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-300 transition-all"
+      />
+    </div>
+
+    <div className="flex flex-col gap-4 sm:flex-row sm:items-center col-span-2">
+      <label className="flex items-center space-x-3 text-base cursor-pointer">
+        <input 
+          type="checkbox" 
+          checked={onlyDiscount} 
+          onChange={e => setOnlyDiscount(e.target.checked)}
+          className="accent-purple-600 w-5 h-5"
         />
+        <span className="text-gray-700">🔥 Promotions</span>
+      </label>
 
-        <select
-          value={selectedBrand}
-          onChange={e => setSelectedBrand(e.target.value)}
-          className="border p-2 rounded"
-        >
-          <option value="">Toutes les marques</option>
-          {uniqueBrands.map(brand => (
-            <option key={brand} value={brand}>{brand}</option>
-          ))}
-        </select>
-
-        <input
-          type="number"
-          placeholder="Prix min"
-          value={minPrice}
-          onChange={e => setMinPrice(e.target.value)}
-          className="border p-2 rounded"
+      <label className="flex items-center space-x-3 text-base cursor-pointer">
+        <input 
+          type="checkbox" 
+          checked={onlyAdded} 
+          onChange={e => setOnlyAdded(e.target.checked)}
+          className="accent-purple-600 w-5 h-5"
         />
-        <input
-          type="number"
-          placeholder="Prix max"
-          value={maxPrice}
-          onChange={e => setMaxPrice(e.target.value)}
-          className="border p-2 rounded"
-        />
+        <span className="text-gray-700">🛒 Dans le panier</span>
+      </label>
+    </div>
+  </div>
+</div>
 
-        <label className="flex items-center gap-2">
-          <input type="checkbox" checked={onlyDiscount} onChange={e => setOnlyDiscount(e.target.checked)} />
-          Promotions
-        </label>
-
-        <label className="flex items-center gap-2">
-          <input type="checkbox" checked={onlyAdded} onChange={e => setOnlyAdded(e.target.checked)} />
-          Dans le panier
-        </label>
-      </div>
-
-      {/* Produits */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredItems.map((item) => (
-          <Card key={item.id} className="relative">
-            <div
-              onClick={() => toggleLike(item.id)}
-              className="absolute top-3 right-3 bg-white p-2 rounded-full shadow-md hover:bg-pink-100 cursor-pointer transition-colors"
-            >
-              {item.liked ? (
-                <FaHeart className="text-red-500 text-lg" />
-              ) : (
-                <FaRegHeart className="text-gray-500 text-lg" />
-              )}
-            </div>
-            {item.discount && (
-              <div className="absolute top-2 left-2 bg-purple-600 text-white text-xs px-2 py-1 rounded">
-                {item.discount}
+        {/* Grille de produits */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {filteredItems.map((item) => (
+            <Card key={item.id} className="relative group overflow-hidden hover:shadow-lg transition-shadow duration-300">
+              <div className="absolute top-3 right-3 z-10">
+                <button 
+                  onClick={() => toggleLike(item.id)}
+                  className="p-2 bg-white rounded-full shadow-md hover:bg-pink-50 transition-colors"
+                >
+                  {item.liked ? (
+                    <FaHeart className="text-pink-600 w-6 h-6 animate-pulse" />
+                  ) : (
+                    <FaRegHeart className="text-gray-400 w-6 h-6 hover:text-pink-600 transition-colors" />
+                  )}
+                </button>
               </div>
-            )}
-            <CardContent className="flex flex-col items-center p-4">
-              <img
-                src={item.image}
-                alt={item.name}
-                width={150}
-                height={150}
-                className="object-contain mt-6"
-              />
-              <div className="text-sm text-gray-500 mt-2">{item.brand}</div>
-              <div className="font-semibold mt-1 text-center text-sm">{item.name}</div>
-              <div className="text-red-600 font-bold mt-1">{item.price.toFixed(2)} TND</div>
-              {item.oldPrice && (
-                <div className="line-through text-sm text-gray-400">{item.oldPrice.toFixed(2)} TND</div>
+
+              {item.discount && (
+                <div className="absolute top-3 left-3 bg-pink-600 text-white px-3 py-1 rounded-full text-sm font-medium z-10">
+                  {item.discount}
+                </div>
               )}
-              <button
-                onClick={() => toggleAddToBag(item.id)}
-                className={`mt-3 w-full px-4 py-2 text-sm rounded flex items-center justify-center gap-2 transition ${
-                  item.added ? 'bg-gray-200 text-black' : 'bg-primary text-white'
-                }`}
-              >
-                {item.added ? <FiCheckCircle className="w-4 h-4" /> : <FaShoppingCart className="w-4 h-4" />}
-                {item.added ? 'Ajouté au panier' : 'Ajouter au panier'}
-              </button>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+
+              <CardContent className="p-4">
+                <div className="aspect-square mb-4 overflow-hidden rounded-xl bg-gray-100">
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <h3 className="text-gray-500 font-medium text-sm">{item.brand}</h3>
+                  <h2 className="font-semibold text-gray-900 line-clamp-2">{item.name}</h2>
+                  
+                  <div className="flex items-center gap-3">
+                    <span className="text-xl font-bold text-purple-600">
+                      {item.price.toFixed(2)} TND
+                    </span>
+                    {item.oldPrice && (
+                      <span className="text-gray-400 line-through text-sm">
+                        {item.oldPrice.toFixed(2)} TND
+                      </span>
+                    )}
+                  </div>
+
+                  <button
+                    onClick={() => toggleAddToBag(item.id)}
+                    className={`w-full mt-4 py-3 rounded-xl flex items-center justify-center gap-2 transition-all ${
+                      item.added 
+                        ? 'bg-green-100 text-green-700' 
+                        : 'bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:shadow-lg'
+                    }`}
+                  >
+                    {item.added ? (
+                      <FiCheckCircle className="w-5 h-5" />
+                    ) : (
+                      <FaShoppingCart className="w-5 h-5" />
+                    )}
+                    {item.added ? 'Déjà ajouté' : 'Ajouter au panier'}
+                  </button>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </main>
     </div>
   );
 }

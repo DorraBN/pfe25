@@ -377,7 +377,7 @@ const PromotionsPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 text-gray-900">
+    <div className=" bg-gradient-to-br from-gray-50 to-gray-100 text-gray-900">
       <Head>
         <title>Promotions | Tech Store</title>
         <meta name="description" content="Découvrez les meilleures promotions high-tech avec des offres à durée limitée" />
@@ -410,13 +410,13 @@ const PromotionsPage = () => {
             </Link>
             <div className="flex items-center space-x-1 text-purple-600 font-medium">
               <FaBolt className="text-lg" />
-              <span className="hidden sm:inline">Promos</span>
+              <span className="hidden sm:inline">Promotions</span>
             </div>
-            <Link href="/compte" className="hidden md:flex items-center space-x-1 text-gray-700 hover:text-purple-600 transition-colors">
+            <Link href="/profil" className="hidden md:flex items-center space-x-1 text-gray-700 hover:text-purple-600 transition-colors">
               <FaUser className="text-lg" />
               <span>Compte</span>
             </Link>
-            <Link href="/liste-souhaits" className="relative p-2 rounded-full hover:bg-gray-100 transition-colors">
+            <Link href="/favorites" className="relative p-2 rounded-full hover:bg-gray-100 transition-colors">
               {listeSouhaits.length > 0 ? (
                 <FaHeart className="text-lg text-red-500" />
               ) : (
@@ -480,7 +480,7 @@ const PromotionsPage = () => {
                     loop
                     muted
                     playsInline
-                    className="w-full max-w-md rounded-2xl shadow-xl"
+                    className="w-30  rounded-2xl shadow-xl"
                   >
                     <source src="/images/cadeau.webm" type="video/webm" />
                     Votre navigateur ne supporte pas les vidéos WebM.
@@ -492,17 +492,14 @@ const PromotionsPage = () => {
               </div>
             </div>
           </div>
-        </section>
-
-        {/* Section Produits */}
-        <section>
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+      
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4 mt-6">
             <h2 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-blue-500">
               Promotions en Vedette
             </h2>
             
-            <div className="flex flex-wrap gap-3 w-full md:w-auto">
-              <div className="md:hidden w-full">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+             
                 <div className="relative">
                   <input
                     type="text"
@@ -537,8 +534,7 @@ const PromotionsPage = () => {
                 <option value="rating">Meilleures notes</option>
               </select>
             </div>
-          </div>
-
+          
           {promotionsFiltrees.length === 0 ? (
             <div className="text-center py-12">
               <h3 className="text-xl font-medium text-gray-500">Aucun produit trouvé</h3>
