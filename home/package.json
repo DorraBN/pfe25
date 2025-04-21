@@ -41,6 +41,7 @@
   "devDependencies": {
     "@types/aos": "^3.0.7",
     "@types/country-telephone-data": "^0.6.3",
+    "@types/leaflet": "^1.9.17",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
