@@ -65,11 +65,11 @@ const BrandCarousel = () => {
   }, []);
 
   return (
-    <section className="py-16 bg-gradient-to-b from-gray-50 to-white">
+    <section className="py-3 bg-transparent">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-16 text-gray-900">
+        <h6 className="text-xl font-bold text-center mb-2 text-gray-900 mt-5">
           Nos Marques Partenaires
-        </h2>
+        </h6>
 
         <div className="relative overflow-hidden" ref={wrapperRef}>
           <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-gray-50 to-transparent z-10"></div>

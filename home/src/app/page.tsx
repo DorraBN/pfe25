@@ -21,7 +21,7 @@ export default function Home() {
     <main>
       <Header />
       <Hero />
-   <BrandShowcase/>
+ 
       <Plus/>
       <NamesList />
   

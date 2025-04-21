@@ -1,5 +1,8 @@
+
+
 "use client"; // Add this at the top if you're using Next.js
 
+import BrandShowcase from "@/components/BrandShowcase";
 import { Icon } from "@iconify/react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { useRef } from "react";
@@ -44,7 +47,7 @@ const Banner = () => {
 
   return (
     <section 
-      className="bg-gradient-to-br from-gray-50 to-gray-100 pt-72 pb-72 overflow-hidden relative"
+      className="bg-gradient-to-br from-gray-50 to-gray-100 pt-52 pb-42 overflow-hidden relative"
       ref={containerRef}
       onMouseMove={handleMouseMove}
     >
@@ -77,8 +80,8 @@ const Banner = () => {
       <div className="relative px-6 lg:px-8 z-10">
         <div className="container mx-auto lg:max-w-screen-xl md:max-w-screen-md px-4">
           {/* Titre & sous-titre */}
-          <div className="text-center mb-16">
-            <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-gray-900 leading-tight">
+          <div className="text-center mb-10 mt-16">
+            <h1 className="text-xl sm:text-6xl  tracking-tight text-gray-900 leading-tight">
               Bienvenue dans notre <br className="hidden sm:block" />
               <span className="text-primary">boutique informatique</span>
             </h1>
@@ -105,6 +108,7 @@ const Banner = () => {
           </div>
         </div>
       </div>
+      <BrandShowcase/>
     </section>
   );
 };
