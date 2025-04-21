@@ -23,18 +23,13 @@ export default function ProductPage() {
           </div>
           <div className="flex items-center gap-2 cursor-pointer hover:text-orange-500">
             <FaBolt className="text-xl text-purple-400" />
-            <span>  <a href="/hotdeals">Bonnes affaires</a></span>
+            <span>  <a href="/hotdeals">Promotions</a></span>
           </div>
-
-          <Link
-            href="/register"
-            className="hidden lg:block bg-[#7b1fa2] text-white text-base font-medium hover:bg-transparent duration-300 hover:text-[#7b1fa2] border border-[#7b1fa2] px-5 py-2 rounded-full"
-          >
-            <div className="flex items-center gap-2">
-              <FaUser className="text-xl" />
-              <span>Compte</span>
+          <div className="flex items-center gap-2 cursor-pointer hover:text-orange-500">
+              <FaUser className="text-xl text-purple-400" />
+              <span>  <a href="/profil">Compte</a></span>
             </div>
-          </Link>
+         
           <div className="bg-orange-500 p-3 rounded-full text-white hover:bg-orange-600 transition">
             <FaShoppingCart className="text-2xl text-purple-400" />
           </div>
