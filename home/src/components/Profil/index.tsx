@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from 'react';
-import Link from 'next/link';
+import { useState } from "react";
+import Link from "next/link";
 import {
   FaShoppingCart,
   FaUser,
@@ -9,34 +9,42 @@ import {
   FaClipboardList,
   FaStar,
   FaQuoteRight,
-  FaPlus,
   FaHeart,
   FaDollarSign,
   FaBolt,
   FaStore,
   FaSignOutAlt,
   FaPalette,
-} from 'react-icons/fa';
-import Logo from '../Layout/Header/Logo';
-import ThemeToggler from '../Layout/Header/ThemeToggler';
-
-const items = [
-  { icon: <FaClipboardList size={28} />, label: 'Liste de Commandes', link: '/commandes' },
-  { icon: <FaShoppingCart size={28} />, label: 'Panier', link: '/cart' },
-  { icon: <FaUser size={28} />, label: 'Modifier Profil', link: '/edit' },
-  { icon: <FaMapMarkerAlt size={28} />, label: 'Adresses', link: '/adresse' },
-  { icon: <FaHeart size={28} />, label: 'Liste de Favories', link: '/favorites' },
-  { icon: <FaDollarSign size={28} />, label: 'Vos Transactions', link: '/transaction' },
-  { icon: <FaStar size={28} />, label: 'Points Tech', link: '/help' },
-  { icon: <FaQuoteRight size={28} />, label: 'Vos avis', link: '/review' },
-];
+  FaMagic,
+} from "react-icons/fa";
+import { BellIcon } from "lucide-react";
+import Logo from "../Layout/Header/Logo";
+import ThemeToggler from "../Layout/Header/ThemeToggler";
 
 export default function Dashboard() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  const notifications = [
+    { id: 1, message: "Votre commande a été expédiée 🚚" },
+    { id: 2, message: "Nouveau message de Clara 💬" },
+    { id: 3, message: "Mise à jour disponible 🔄" },
+  ];
+
+  const items = [
+    { icon: <FaClipboardList size={28} />, label: "Liste de Commandes", link: "/commandes" },
+    { icon: <FaShoppingCart size={28} />, label: "Panier", link: "/cart" },
+    { icon: <FaUser size={28} />, label: "Modifier Profil", link: "/edit" },
+    { icon: <FaMapMarkerAlt size={28} />, label: "Adresses", link: "/adresse" },
+    { icon: <FaHeart size={28} />, label: "Liste de Favories", link: "/favorites" },
+    { icon: <FaDollarSign size={28} />, label: "Vos Transactions", link: "/transaction" },
+    { icon: <FaStar size={28} />, label: "Points Tech", link: "/help" },
+    { icon: <FaQuoteRight size={28} />, label: "Vos avis", link: "/review" },
+  ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-white via-purple-50 to-purple-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 font-sans text-gray-800 dark:text-gray-200 mb-3">
-      {/* Navigation */}
+      {/* Header */}
       <header className="sticky top-0 z-50 bg-white dark:bg-gray-800 shadow-md px-6 py-4 flex items-center justify-between border-b dark:border-gray-700">
         <div className="flex items-center space-x-2">
           <div className="ml-1">
@@ -48,17 +56,51 @@ export default function Dashboard() {
         <div className="relative flex space-x-6 text-sm items-center">
           <div className="flex items-center gap-2 cursor-pointer hover:text-purple-600 dark:hover:text-purple-400 transition">
             <FaStore className="text-xl text-purple-500 dark:text-purple-400" />
-            <span><a href="/#">Accueil</a></span>
+            <Link href="/">Accueil</Link>
           </div>
+
           <div className="flex items-center gap-2 cursor-pointer hover:text-purple-600 dark:hover:text-purple-400 transition">
             <FaBolt className="text-xl text-purple-500 dark:text-purple-400" />
-            <span><a href="/hotdeals">Promotions</a></span>
+            <Link href="/hotdeals">Promotions</Link>
           </div>
+
           <div className="flex items-center gap-2 cursor-pointer hover:text-purple-600 dark:hover:text-purple-400 transition">
+            <FaMagic className="text-xl text-purple-500 dark:text-purple-400" />
+            <Link href="/recommendations">Recommandations</Link>
+          </div>
+
+          {/* Notifications */}
+          <div className="relative">
+            <button
+              onClick={() => setOpen(!open)}
+              className="relative p-2 rounded-full  hover:bg-gray-700 transition-colors "
+            >
+              <BellIcon className="h-6 w-6  text-purple-500" />
+              <span className="absolute top-0 right-0 bg-red-500 text-xs rounded-full w-4 h-4 flex items-center justify-center text-white animate-pulse">
+                {notifications.length}
+              </span>
+            </button>
+
+            {open && (
+              <div className="absolute right-0 mt-2 w-72 bg-white text-black rounded-lg shadow-lg z-10">
+                <div className="p-4 border-b font-bold">Notifications</div>
+                <ul>
+                  {notifications.map((notif) => (
+                    <li key={notif.id} className="px-4 py-2 hover:bg-gray-100 border-b">
+                      {notif.message}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+
+          {/* Theme */}
+          <div className="flex items-center gap-2">
             <ThemeToggler />
           </div>
 
-          {/* Compte Dropdown */}
+          {/* Compte */}
           <div className="relative">
             <button
               onClick={() => setMenuOpen(!menuOpen)}
@@ -92,12 +134,11 @@ export default function Dashboard() {
             )}
           </div>
 
-            <FaShoppingCart className="text-2xl text-black" />
-         
+          <FaShoppingCart className="text-2xl text-black" />
         </div>
       </header>
 
-      {/* Info Profil */}
+      {/* Profil Info */}
       <div className="max-w-6xl mx-auto mt-10 px-6">
         <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg p-6 md:p-8 rounded-2xl shadow-xl flex flex-col md:flex-row items-center justify-between gap-6 border border-purple-200 dark:border-gray-700">
           <div className="flex items-center gap-6">
@@ -112,7 +153,7 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* Éléments du tableau de bord */}
+        {/* Items */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-10">
           {items.map((item, index) => {
             const content = (

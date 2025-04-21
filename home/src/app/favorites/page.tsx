@@ -147,13 +147,13 @@ export default function WishlistPage() {
       placeholder="🔍 Rechercher un produit..."
       value={search}
       onChange={e => setSearch(e.target.value)}
-      className="border border-gray-300 rounded-lg px-4 py-3 text-base shadow-sm focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-300 transition-all"
+      className="border border-gray-300 rounded-lg px-4 py-3 text-sm shadow-sm focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-300 transition-all"
     />
 
     <select
       value={selectedBrand}
       onChange={e => setSelectedBrand(e.target.value)}
-      className="border border-gray-300 rounded-lg px-4 py-3 text-base bg-white shadow-sm focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-300 transition-all"
+      className="border border-gray-300 rounded-lg px-4 py-3 text-sm bg-white shadow-sm focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-300 transition-all "
     >
       <option value="">🏷️ Toutes les marques</option>
       {uniqueBrands.map(brand => (
